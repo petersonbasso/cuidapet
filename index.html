@@ -62,6 +62,72 @@
             animation: morph 8s ease-in-out infinite;
         }
 
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            /* Padding lateral para não cortar sombras ou encostar nas bordas */
+            padding: 1rem 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            /* Removed gap here, handled by padding in slides for better width control */
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            min-width: 0;
+            padding: 0 0.5rem;
+            /* Equivalent to gap-4 (1rem total space) */
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-slide {
+                flex: 0 0 33.3333%;
+                /* 3 items visible */
+                padding: 0 1rem;
+                /* Equivalent to gap-8 (2rem total space) */
+            }
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: #38B2AC;
+            border: none;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 20;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .carousel-btn:hover {
+            background-color: #38B2AC;
+            color: white;
+            opacity: 1;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-btn.prev {
+            left: 0.5rem;
+        }
+
+        .carousel-btn.next {
+            right: 0.5rem;
+        }
+
         /* Ajustes para detalhes/summary do FAQ */
         details>summary {
             list-style: none;
@@ -554,53 +620,111 @@
             <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">O que os tutores
                 dizem</h2>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Review 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100">
-                    <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
-                    <p class="text-gray-600 relative z-10 mb-6 italic">"A Dra. Mariana é um anjo! Meu gato Fred morre de
-                        medo de sair de casa, e com o atendimento domiciliar ele ficou super tranquilo. Recomendo
-                        demais!"</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold text-gray-900">Carla Mendes</p>
-                            <p class="text-xs text-gray-500">Tutora do Fred (Gato)</p>
+            <!-- Carousel Container -->
+            <div class="carousel-container group">
+                <!-- Navigation Buttons -->
+                <button class="carousel-btn prev opacity-0 group-hover:opacity-100 transition-opacity" id="prevBtn"
+                    aria-label="Anterior">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next opacity-0 group-hover:opacity-100 transition-opacity" id="nextBtn"
+                    aria-label="Próximo">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <div class="carousel-track" id="track">
+                    <!-- Review 1 -->
+                    <div class="carousel-slide">
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100 h-full flex flex-col justify-between">
+                            <div>
+                                <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
+                                <p class="text-gray-600 relative z-10 mb-6 italic">"A Dra. Mariana é um anjo! Meu gato
+                                    Fred morre de
+                                    medo de sair de casa, e com o atendimento domiciliar ele ficou super tranquilo.
+                                    Recomendo
+                                    demais!"</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Carla Mendes</p>
+                                    <p class="text-xs text-gray-500">Tutora do Fred (Gato)</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Review 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100">
-                    <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
-                    <p class="text-gray-600 relative z-10 mb-6 italic">"Melhor coisa que fiz foi chamar a CuidaPet.
-                        Vacinei meus dois cachorros de uma vez, sem a bagunça de levar no carro. Profissionalismo nota
-                        10."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold text-gray-900">Roberto Silva</p>
-                            <p class="text-xs text-gray-500">Tutor do Max e Bob</p>
+                    <!-- Review 2 -->
+                    <div class="carousel-slide">
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100 h-full flex flex-col justify-between">
+                            <div>
+                                <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
+                                <p class="text-gray-600 relative z-10 mb-6 italic">"Melhor coisa que fiz foi chamar a
+                                    CuidaPet.
+                                    Vacinei meus dois cachorros de uma vez, sem a bagunça de levar no carro.
+                                    Profissionalismo nota
+                                    10."</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Roberto Silva</p>
+                                    <p class="text-xs text-gray-500">Tutor do Max e Bob</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Review 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100">
-                    <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
-                    <p class="text-gray-600 relative z-10 mb-6 italic">"Atendimento impecável. Explicou tudo com muita
-                        paciência e carinho. Dá pra ver que ama o que faz. Virei cliente fiel!"</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
-                            <i class="fa-solid fa-user"></i>
+                    <!-- Review 3 -->
+                    <div class="carousel-slide">
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100 h-full flex flex-col justify-between">
+                            <div>
+                                <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
+                                <p class="text-gray-600 relative z-10 mb-6 italic">"Atendimento impecável. Explicou tudo
+                                    com muita
+                                    paciência e carinho. Dá pra ver que ama o que faz. Virei cliente fiel!"</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Ana Paula</p>
+                                    <p class="text-xs text-gray-500">Tutora da Luna</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <p class="font-bold text-gray-900">Ana Paula</p>
-                            <p class="text-xs text-gray-500">Tutora da Luna</p>
+                    </div>
+
+                    <!-- Review 4 (New - Example) -->
+                    <div class="carousel-slide">
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100 h-full flex flex-col justify-between">
+                            <div>
+                                <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
+                                <p class="text-gray-600 relative z-10 mb-6 italic">"Muito prático! O agendamento foi
+                                    rápido e a consulta super detalhada. Adoramos o serviço."</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-900">Marcelo Costa</p>
+                                    <p class="text-xs text-gray-500">Tutor do Thor</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -788,6 +912,67 @@
                 navbar.classList.remove('shadow-md');
             }
         });
+
+        // Testimonials Carousel Script
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('track');
+            const slides = Array.from(track.children);
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+
+            let currentIndex = 0;
+
+            function getItemsPerView() {
+                return window.innerWidth >= 768 ? 3 : 1;
+            }
+
+            function updateCarousel() {
+                const width = track.clientWidth / getItemsPerView();
+                track.style.transform = `translateX(-${currentIndex * width}px)`;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                const itemsPerView = getItemsPerView();
+                const maxIndex = slides.length - itemsPerView;
+
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0; // Infinite loop start
+                }
+                updateCarousel();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const itemsPerView = getItemsPerView();
+                const maxIndex = slides.length - itemsPerView;
+
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = maxIndex; // Infinite loop end
+                }
+                updateCarousel();
+            });
+
+            // Auto play
+            setInterval(() => {
+                // Only autoplay if user is not hovering (optional, but good UX)
+                // For simplicity, simple autoplay
+                // nextBtn.click(); 
+                // Autoplay avoided for now to not annoy user reading
+            }, 5000);
+
+            window.addEventListener('resize', () => {
+                // Reset index or adjust if out of bounds?
+                // Just update
+                updateCarousel();
+            });
+
+            // Initial call
+            updateCarousel(); // Ensure alignment starts correct
+        });
+
     </script>
     <script type="module" src="/index.tsx"></script>
 </body>
