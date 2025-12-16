@@ -11,7 +11,7 @@ async function fetchGooglePhotos(albumUrl) {
     try {
         console.log('Fetching photos from:', albumUrl);
         // Use allorigins.win as a CORS proxy to fetch the raw HTML of the album page
-        const response = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(albumUrl)}`);
+        const response = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(albumUrl)}`);
 
         if (!response.ok) {
             throw new Error(`Failed to fetch album: ${response.status}`);
