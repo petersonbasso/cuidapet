@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CuidaPet | Veterinária Domiciliar</title>
+    <meta name="description"
+        content="Atendimento veterinário no conforto do seu lar. Menos estresse para seu pet, mais comodidade para você.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (via CDN para facilitar hospedagem estática simples) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#E6FFFA', // Verde menta bem claro
+                            DEFAULT: '#38B2AC', // Teal (cor principal)
+                            dark: '#2C7A7B',   // Teal escuro
+                            accent: '#234E52'  // Slate escuro
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Styles -->
+    <style>
+        /* Animação suave para o blob atrás da foto */
+        @keyframes morph {
+            0% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+
+            50% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+            }
+
+            100% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+        }
+
+        .blob-shape {
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        /* Ajustes para detalhes/summary do FAQ */
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="/index.css">
+</head>
+
+<body class="font-sans text-gray-600 antialiased bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                    <span class="font-heading font-bold text-2xl text-gray-800">Cuida<span
+                            class="text-brand">Pet</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-gray-600 hover:text-brand font-semibold transition-colors">Início</a>
+                    <a href="#vantagens"
+                        class="text-gray-600 hover:text-brand font-semibold transition-colors">Vantagens</a>
+                    <a href="#servicos"
+                        class="text-gray-600 hover:text-brand font-semibold transition-colors">Serviços</a>
+                    <a href="#sobre" class="text-gray-600 hover:text-brand font-semibold transition-colors">Sobre
+                        Nós</a>
+                    <a href="#faq" class="text-gray-600 hover:text-brand font-semibold transition-colors">FAQ</a>
+                    <a href="https://wa.me/5511999999999" target="_blank"
+                        class="bg-brand hover:bg-brand-dark text-white px-6 py-2.5 rounded-full font-bold shadow-lg hover:shadow-brand/50 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp"></i> Agendar Visita
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div class="md:hidden hidden bg-white border-t" id="mobile-menu">
+            <div class="px-4 pt-2 pb-4 space-y-1 shadow-lg">
+                <a href="#inicio"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand hover:bg-gray-50">Início</a>
+                <a href="#vantagens"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand hover:bg-gray-50">Vantagens</a>
+                <a href="#servicos"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand hover:bg-gray-50">Serviços</a>
+                <a href="#sobre"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand hover:bg-gray-50">Sobre
+                    Nós</a>
+                <a href="#faq"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand hover:bg-gray-50">FAQ</a>
+                <a href="https://wa.me/5511999999999"
+                    class="block mt-4 text-center bg-brand text-white px-3 py-3 rounded-lg font-bold">
+                    Agendar pelo WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden relative">
+        <!-- Background Elements -->
+        <div
+            class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-brand-light rounded-full blur-3xl opacity-50 -z-10">
+        </div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-blue-50 rounded-full blur-3xl opacity-50 -z-10">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="text-center lg:text-left animate-fade-in-up">
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-brand-light text-brand-dark font-bold text-sm mb-6 tracking-wide uppercase">
+                        <i class="fa-solid fa-house-medical mr-2"></i> Veterinária Domiciliar
+                    </span>
+                    <h1 class="font-heading text-4xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                        Cuidado e carinho <br>
+                        <span class="text-brand relative inline-block">
+                            sem sair de casa
+                            <svg class="absolute w-full h-3 bottom-1 left-0 text-yellow-300 opacity-50 -z-10"
+                                viewBox="0 0 100 10" preserveAspectRatio="none">
+                                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                            </svg>
+                        </span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        Proporcione ao seu pet um atendimento veterinário de excelência no conforto e segurança do seu
+                        lar. Menos estresse para ele, mais comodidade para você.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://wa.me/5511999999999" target="_blank"
+                            class="bg-brand hover:bg-brand-dark text-white text-lg px-8 py-4 rounded-full font-bold shadow-xl hover:shadow-brand/40 transition-all transform hover:-translate-y-1 text-center">
+                            Agendar Agora
+                        </a>
+                        <a href="#como-funciona"
+                            class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 text-lg px-8 py-4 rounded-full font-bold shadow-sm transition-all flex items-center justify-center gap-2 group">
+                            <i
+                                class="fa-regular fa-circle-play text-brand group-hover:scale-110 transition-transform"></i>
+                            Como funciona
+                        </a>
+                    </div>
+
+                    <div class="mt-8 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500">
+                        <div class="flex -space-x-3">
+                            <img class="w-10 h-10 rounded-full border-2 border-white object-cover"
+                                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=100"
+                                alt="Avatar">
+                            <img class="w-10 h-10 rounded-full border-2 border-white object-cover"
+                                src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&q=80&w=100"
+                                alt="Avatar">
+                            <img class="w-10 h-10 rounded-full border-2 border-white object-cover"
+                                src="https://images.unsplash.com/photo-1619360142636-23194a2119c4?auto=format&fit=crop&q=80&w=100"
+                                alt="Avatar">
+                        </div>
+                        <p><span class="font-bold text-gray-800">+500</span> pets atendidos com amor</p>
+                    </div>
+                </div>
+
+                <!-- Image Content -->
+                <div class="relative lg:h-auto">
+                    <!-- Blob Background -->
+                    <div
+                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-brand-light blob-shape -z-10">
+                    </div>
+
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1623366302587-bce731d501d8?auto=format&fit=crop&q=80&w=1000"
+                            alt="Veterinária atendendo cachorro"
+                            class="rounded-3xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] transform hover:scale-[1.02] transition-transform duration-500">
+
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 animate-bounce"
+                            style="animation-duration: 3s;">
+                            <div class="bg-green-100 p-3 rounded-full text-green-600">
+                                <i class="fa-solid fa-star text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 font-bold uppercase">Avaliação Média</p>
+                                <p class="font-heading font-bold text-gray-900 text-lg">5.0 Estrelas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vantagens Section -->
+    <section id="vantagens" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">Por que escolher o
+                    atendimento domiciliar?</h2>
+                <p class="text-gray-600 text-lg">Unimos a excelência técnica da clínica com o amor e conforto do seu
+                    lar.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-gray-50 p-8 rounded-3xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 group">
+                    <div
+                        class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Sem Estresse</h3>
+                    <p class="text-gray-600 leading-relaxed">Seu pet não precisa passar pelo trauma da caixa de
+                        transporte ou da sala de espera. O atendimento é feito onde ele se sente seguro.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-gray-50 p-8 rounded-3xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 group">
+                    <div
+                        class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Comodidade e Tempo</h3>
+                    <p class="text-gray-600 leading-relaxed">Economize tempo no trânsito. Nós vamos até você com horário
+                        marcado e pontualidade, inclusive aos finais de semana.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-gray-50 p-8 rounded-3xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 group">
+                    <div
+                        class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Atenção Exclusiva</h3>
+                    <p class="text-gray-600 leading-relaxed">Consultas com duração maior para uma avaliação completa do
+                        animal e do ambiente, garantindo um diagnóstico mais preciso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="py-20 bg-brand-light/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 relative order-2 lg:order-1">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-yellow-200 rounded-full opacity-50 blur-xl"></div>
+                    <img src="https://images.unsplash.com/photo-1594756202469-9ff9799b2e4e?auto=format&fit=crop&q=80&w=800"
+                        alt="Dra. Mariana" class="relative rounded-3xl shadow-lg w-full object-cover h-[500px]">
+                </div>
+
+                <div class="lg:w-1/2 order-1 lg:order-2">
+                    <h4 class="text-brand font-bold uppercase tracking-wider mb-2 text-sm">Quem cuida do seu melhor
+                        amigo</h4>
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-6">Olá, eu sou a Dra.
+                        Mariana</h2>
+
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                        Apaixonada por animais desde a infância, formei-me em Medicina Veterinária com o sonho de
+                        oferecer um atendimento mais humano e próximo. Percebi que o ambiente clínico muitas vezes
+                        assustava os animais.
+                    </p>
+                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                        Hoje, dedico-me exclusivamente ao atendimento domiciliar, levando saúde de qualidade com o
+                        carinho que seu pet merece. Meu objetivo é ser a "médica da família" do seu animalzinho.
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                            <i class="fa-solid fa-graduation-cap text-brand text-3xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Formada na USP</p>
+                                <p class="text-sm text-gray-500">CRMV-SP 12345</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                            <i class="fa-solid fa-certificate text-brand text-3xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Especialista</p>
+                                <p class="text-sm text-gray-500">Clínica de Peq. Animais</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">Serviços Oferecidos</h2>
+                <p class="text-gray-600 text-lg">Tudo o que seu pet precisa para viver saudável e feliz.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div
+                    class="p-6 rounded-2xl border border-gray-100 hover:border-brand hover:shadow-lg transition-all duration-300 bg-white group hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-red-500 mb-4 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-stethoscope text-xl"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gray-900 mb-2">Consulta Presencial</h3>
+                    <p class="text-sm text-gray-600">Atendimento completo no conforto do seu lar. Avaliação física
+                        detalhada, diagnóstico e tratamento.</p>
+                </div>
+
+                <!-- New Service: Consulta Online -->
+                <div
+                    class="p-6 rounded-2xl border border-gray-100 hover:border-brand hover:shadow-lg transition-all duration-300 bg-white group hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-500 mb-4 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-video text-xl"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gray-900 mb-2">Consulta Online</h3>
+                    <p class="text-sm text-gray-600">Orientação veterinária por videochamada. Ideal para triagem,
+                        dúvidas comportamentais e acompanhamento.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div
+                    class="p-6 rounded-2xl border border-gray-100 hover:border-brand hover:shadow-lg transition-all duration-300 bg-white group hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 mb-4 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-syringe text-xl"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gray-900 mb-2">Vacinas Importadas</h3>
+                    <p class="text-sm text-gray-600">Protocolos vacinais personalizados para cães e gatos com as
+                        melhores marcas.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div
+                    class="p-6 rounded-2xl border border-gray-100 hover:border-brand hover:shadow-lg transition-all duration-300 bg-white group hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-green-500 mb-4 group-hover:bg-green-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-flask text-xl"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gray-900 mb-2">Coleta de Exames</h3>
+                    <p class="text-sm text-gray-600">Coleta de sangue, urina e fezes no domicílio e envio para
+                        laboratório.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div
+                    class="p-6 rounded-2xl border border-gray-100 hover:border-brand hover:shadow-lg transition-all duration-300 bg-white group hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center text-yellow-600 mb-4 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-microchip text-xl"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gray-900 mb-2">Microchipagem</h3>
+                    <p class="text-sm text-gray-600">Identificação segura e permanente para o seu animal de estimação.
+                    </p>
+                </div>
+
+                <!-- Service 5 -->
+                <div
+                    class="p-6 rounded-2xl border border-gray-100 hover:border-brand hover:shadow-lg transition-all duration-300 bg-white group hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center text-purple-500 mb-4 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-comment-medical text-xl"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-gray-900 mb-2">Concierge Veterinário</h3>
+                    <p class="text-sm text-gray-600">Segunda opinião, análise de exames e suporte na tomada de decisão.
+                        Acompanhamento remoto contínuo.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://wa.me/5511999999999"
+                    class="inline-flex items-center text-brand font-bold hover:text-brand-dark transition-colors text-lg">
+                    Ver tabela de preços <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Funciona Section -->
+    <section id="como-funciona" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">Como funciona?</h2>
+                <p class="text-gray-600">Simples, rápido e prático.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Line Connector (Desktop) -->
+                <div class="hidden md:block absolute top-12 left-0 w-full h-1 bg-gray-200 -z-10"></div>
+
+                <div class="grid md:grid-cols-3 gap-10">
+                    <!-- Step 1 -->
+                    <div
+                        class="bg-white p-8 rounded-3xl shadow-lg text-center transform transition hover:-translate-y-2">
+                        <div
+                            class="w-24 h-24 mx-auto bg-brand text-white rounded-full flex items-center justify-center text-3xl font-bold mb-6 border-8 border-gray-50 shadow-sm">
+                            1</div>
+                        <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Agendamento</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Entre em contato pelo WhatsApp e escolha o
+                            melhor dia e horário para a visita.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div
+                        class="bg-white p-8 rounded-3xl shadow-lg text-center transform transition hover:-translate-y-2">
+                        <div
+                            class="w-24 h-24 mx-auto bg-brand text-white rounded-full flex items-center justify-center text-3xl font-bold mb-6 border-8 border-gray-50 shadow-sm">
+                            2</div>
+                        <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">A Visita</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">A veterinária vai até sua casa com todo
+                            equipamento necessário para o atendimento.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div
+                        class="bg-white p-8 rounded-3xl shadow-lg text-center transform transition hover:-translate-y-2">
+                        <div
+                            class="w-24 h-24 mx-auto bg-brand text-white rounded-full flex items-center justify-center text-3xl font-bold mb-6 border-8 border-gray-50 shadow-sm">
+                            3</div>
+                        <h3 class="font-heading text-xl font-bold text-gray-900 mb-3">Acompanhamento</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Receba orientações, receitas digitais e tire
+                            dúvidas no pós-consulta pelo WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria Section -->
+    <section id="galeria" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">Galeria de Pacientes</h2>
+                <p class="text-gray-600 text-lg">Um pouco do nosso dia a dia e dos focinhos felizes que atendemos.</p>
+            </div>
+
+            <!-- Dynamic Gallery Grid -->
+            <!-- Added id="gallery-grid" for JS target -->
+            <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] min-h-[400px]">
+                <!-- Loading State Skeleton -->
+                <div class="col-span-2 row-span-2 bg-gray-200 animate-pulse rounded-3xl"></div>
+                <div class="bg-gray-200 animate-pulse rounded-3xl"></div>
+                <div class="bg-gray-200 animate-pulse rounded-3xl"></div>
+                <div class="bg-gray-200 animate-pulse rounded-3xl"></div>
+                <div class="bg-gray-200 animate-pulse rounded-3xl"></div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://instagram.com" target="_blank"
+                    class="inline-flex items-center justify-center px-8 py-3 text-base font-bold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                    <i class="fa-brands fa-instagram mr-2 text-xl"></i> Siga @cuidapet no Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Load Gallery Script -->
+    <script src="gallery.js"></script>
+
+    <!-- Depoimentos Section -->
+    <section class="py-20 bg-brand-light/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 text-center mb-16">O que os tutores
+                dizem</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100">
+                    <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
+                    <p class="text-gray-600 relative z-10 mb-6 italic">"A Dra. Mariana é um anjo! Meu gato Fred morre de
+                        medo de sair de casa, e com o atendimento domiciliar ele ficou super tranquilo. Recomendo
+                        demais!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Carla Mendes</p>
+                            <p class="text-xs text-gray-500">Tutora do Fred (Gato)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100">
+                    <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
+                    <p class="text-gray-600 relative z-10 mb-6 italic">"Melhor coisa que fiz foi chamar a CuidaPet.
+                        Vacinei meus dois cachorros de uma vez, sem a bagunça de levar no carro. Profissionalismo nota
+                        10."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Roberto Silva</p>
+                            <p class="text-xs text-gray-500">Tutor do Max e Bob</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm relative border border-gray-100">
+                    <i class="fa-solid fa-quote-left text-4xl text-brand-light absolute top-4 left-4"></i>
+                    <p class="text-gray-600 relative z-10 mb-6 italic">"Atendimento impecável. Explicou tudo com muita
+                        paciência e carinho. Dá pra ver que ama o que faz. Virei cliente fiel!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Ana Paula</p>
+                            <p class="text-xs text-gray-500">Tutora da Luna</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Perguntas Frequentes
+            </h2>
+
+            <div class="space-y-4">
+                <details
+                    class="group bg-gray-50 rounded-xl shadow-sm cursor-pointer border border-transparent hover:border-brand-light transition-all">
+                    <summary class="flex items-center justify-between p-6 font-bold text-gray-900 list-none">
+                        Quais regiões vocês atendem?
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-brand"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                        Atendemos em toda a Zona Sul e Zona Oeste da cidade. Para outras regiões, entre em contato para
+                        verificar a disponibilidade e taxa de deslocamento.
+                    </div>
+                </details>
+
+                <details
+                    class="group bg-gray-50 rounded-xl shadow-sm cursor-pointer border border-transparent hover:border-brand-light transition-all">
+                    <summary class="flex items-center justify-between p-6 font-bold text-gray-900 list-none">
+                        Fazem cirurgias ou exames de imagem em casa?
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-brand"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                        Realizamos procedimentos simples, coletas de sangue e vacinas. Cirurgias, raio-x e ultrassom
+                        requerem ambiente hospitalar. Nesses casos, encaminhamos para clínicas parceiras de confiança.
+                    </div>
+                </details>
+
+                <details
+                    class="group bg-gray-50 rounded-xl shadow-sm cursor-pointer border border-transparent hover:border-brand-light transition-all">
+                    <summary class="flex items-center justify-between p-6 font-bold text-gray-900 list-none">
+                        Como é feito o pagamento?
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-brand"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                        O pagamento pode ser realizado via PIX, dinheiro, cartão de crédito ou débito no momento da
+                        consulta.
+                    </div>
+                </details>
+
+                <details
+                    class="group bg-gray-50 rounded-xl shadow-sm cursor-pointer border border-transparent hover:border-brand-light transition-all">
+                    <summary class="flex items-center justify-between p-6 font-bold text-gray-900 list-none">
+                        Atendem emergências?
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-brand"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                        O atendimento domiciliar funciona com agendamento prévio. Em casos de emergência com risco de
+                        vida (atropelamento, convulsão grave), recomendamos dirigir-se imediatamente ao hospital
+                        veterinário 24h mais próximo.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-accent text-gray-300 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 text-white mb-4">
+                        <div class="w-8 h-8 bg-brand rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <span class="font-heading font-bold text-xl">CuidaPet</span>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed">Levando saúde e carinho para quem sempre te espera
+                        em casa com alegria.</p>
+                    <div class="flex space-x-4 pt-2">
+                        <a href="#" class="text-white hover:text-brand transition-colors text-xl"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-brand transition-colors text-xl"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="text-white hover:text-brand transition-colors text-xl"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6 font-heading">Links Rápidos</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#inicio" class="hover:text-brand transition-colors">Início</a></li>
+                        <li><a href="#vantagens" class="hover:text-brand transition-colors">Vantagens</a></li>
+                        <li><a href="#sobre" class="hover:text-brand transition-colors">Sobre a Dra.</a></li>
+                        <li><a href="#servicos" class="hover:text-brand transition-colors">Serviços</a></li>
+                        <li><a href="#faq" class="hover:text-brand transition-colors">Dúvidas Frequentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contato -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6 font-heading">Contato</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone mt-1 text-brand"></i>
+                            <span>(11) 99999-9999</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope mt-1 text-brand"></i>
+                            <span>contato@cuidapet.com.br</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-brand"></i>
+                            <span>Atendimento Domiciliar<br>São Paulo - SP</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Horários -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6 font-heading">Horário de Atendimento</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between border-b border-gray-700 pb-2">
+                            <span>Seg - Sex:</span>
+                            <span class="text-white font-medium">08:00 - 18:00</span>
+                        </li>
+                        <li class="flex justify-between border-b border-gray-700 pb-2">
+                            <span>Sábado:</span>
+                            <span class="text-white font-medium">09:00 - 14:00</span>
+                        </li>
+                        <li class="flex justify-between pt-1">
+                            <span>Domingo:</span>
+                            <span class="text-gray-500">Fechado</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2023 CuidaPet Veterinária. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <a href="https://wa.me/5511999999999" target="_blank"
+        class="fixed bottom-6 right-6 z-40 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition-all transform hover:scale-110 flex items-center gap-2 group cursor-pointer">
+        <span
+            class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 font-bold px-0 group-hover:px-2">Agendar
+            Visita</span>
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Menu Mobile Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fechar menu ao clicar em um link
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+    </script>
+    <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
