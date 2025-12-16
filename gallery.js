@@ -5,7 +5,7 @@
  * and renders them into a dynamic grid with a specific "mosaic" layout.
  */
 
-const GOOGLE_PHOTOS_ALBUM_URL = 'https://photos.app.goo.gl/Qc4y7t5ha15qC4Q5A'; // Placeholder Album (Cute Pets)
+const GOOGLE_PHOTOS_ALBUM_URL = 'https://photos.app.goo.gl/cZUhn9mzX7FgNdcQA'; // Placeholder Album (Cute Pets)
 
 async function fetchGooglePhotos(albumUrl) {
     try {
