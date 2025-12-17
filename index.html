@@ -4,9 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CuidaPet | Veterinária Domiciliar</title>
+    <title>CuidaPet | Veterinária Domiciliar em Canoas e Região</title>
     <meta name="description"
-        content="Atendimento veterinário no conforto do seu lar. Menos estresse para seu pet, mais comodidade para você.">
+        content="Atendimento veterinário no conforto do seu lar em Canoas, Esteio, Nova Santa Rita e Porto Alegre (Zona Norte). Vacinas, consultas e exames sem estresse para seu pet.">
+    <meta name="keywords"
+        content="veterinária domiciliar, vet em casa, vacinas pet, consulta veterinária canoas, veterinária canoas, atendimento domiciliar pet">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#38B2AC">
+    <link rel="canonical" href="https://cuidapet.vet.br/">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cuidapet.vet.br/">
+    <meta property="og:title" content="CuidaPet | Veterinária Domiciliar Sem Estresse">
+    <meta property="og:description"
+        content="Leve o melhor cuidado veterinário para dentro da sua casa. Atendimento humanizado, vacinas e exames em Canoas e região.">
+    <meta property="og:image" content="https://cuidapet.vet.br/images/hero-vet.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cuidapet.vet.br/">
+    <meta property="twitter:title" content="CuidaPet | Veterinária Domiciliar Sem Estresse">
+    <meta property="twitter:description"
+        content="Leve o melhor cuidado veterinário para dentro da sua casa. Atendimento humanizado, vacinas e exames em Canoas e região.">
+    <meta property="twitter:image" content="https://cuidapet.vet.br/images/hero-vet.png">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VeterinaryCare",
+      "name": "CuidaPet Veterinária Domiciliar",
+      "image": "https://cuidapet.vet.br/images/logo.png",
+      "@id": "https://cuidapet.vet.br",
+      "url": "https://cuidapet.vet.br",
+      "telephone": "+555196008543",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Atendimento Domiciliar",
+        "addressLocality": "Canoas",
+        "addressRegion": "RS",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -29.9189,
+        "longitude": -51.1781
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "14:00"
+        }
+      ],
+      "sameAs": [
+        "https://instagram.com/vetcuidapet",
+        "https://wa.me/555196008543"
+      ]
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -350,8 +422,8 @@
                 </div>
 
                 <div class="lg:w-1/2 order-1 lg:order-2">
-                    <h4 class="text-brand font-bold uppercase tracking-wider mb-2 text-sm">Quem cuida do seu melhor
-                        amigo</h4>
+                    <p class="text-brand font-bold uppercase tracking-wider mb-2 text-sm">Quem cuida do seu melhor
+                        amigo</p>
                     <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-6">Olá, eu sou a Dra.
                         Priscila Drogemoller</h2>
 
@@ -1048,20 +1120,22 @@
                 <!-- Contato -->
                 <div>
                     <h4 class="text-gray-900 font-bold text-lg mb-6 font-heading">Contato</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-phone mt-1 text-brand"></i>
-                            <span>(51) 99600-8543</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-envelope mt-1 text-brand"></i>
-                            <span>contato@cuidapet.vet.br</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-location-dot mt-1 text-brand"></i>
-                            <span>Atendimento Domiciliar<br>Canoas - RS</span>
-                        </li>
-                    </ul>
+                    <address class="not-italic">
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-phone mt-1 text-brand"></i>
+                                <span>(51) 99600-8543</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-envelope mt-1 text-brand"></i>
+                                <span>contato@cuidapet.vet.br</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-location-dot mt-1 text-brand"></i>
+                                <span>Atendimento Domiciliar<br>Canoas - RS</span>
+                            </li>
+                        </ul>
+                    </address>
                 </div>
 
                 <!-- Horários -->
