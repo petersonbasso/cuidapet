@@ -315,8 +315,8 @@
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                 <div class="lg:w-1/2 relative order-2 lg:order-1">
                     <div class="absolute -top-4 -left-4 w-24 h-24 bg-yellow-200 rounded-full opacity-50 blur-xl"></div>
-                    <img src="https://images.unsplash.com/photo-1594756202469-9ff9799b2e4e?auto=format&fit=crop&q=80&w=800"
-                        alt="Dra. Mariana" class="relative rounded-3xl shadow-lg w-full object-cover h-[500px]">
+                    <img src="images/gallery/pri.webp" alt="Dra. Priscila"
+                        class="relative rounded-3xl shadow-lg w-full object-cover h-[500px]">
                 </div>
 
                 <div class="lg:w-1/2 order-1 lg:order-2">
@@ -531,6 +531,15 @@
                     <img src="images/gallery/img2.webp" alt="Foto da Galeria CuidaPet" width="300" height="200"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p
+                            class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform">
+                            Paciente CuidaPet</p>
+                        <p
+                            class="text-brand-light text-xs translate-y-4 group-hover:translate-y-0 transition-transform delay-75">
+                            Atendimento Domiciliar</p>
+                    </div>
                 </div>
 
                 <!-- Item 3 -->
@@ -538,6 +547,15 @@
                     <img src="images/gallery/img3.webp" alt="Foto da Galeria CuidaPet" width="300" height="200"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p
+                            class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform">
+                            Paciente CuidaPet</p>
+                        <p
+                            class="text-brand-light text-xs translate-y-4 group-hover:translate-y-0 transition-transform delay-75">
+                            Atendimento Domiciliar</p>
+                    </div>
                 </div>
 
                 <!-- Item 4 -->
@@ -545,6 +563,15 @@
                     <img src="images/gallery/img4.webp" alt="Foto da Galeria CuidaPet" width="300" height="200"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p
+                            class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform">
+                            Paciente CuidaPet</p>
+                        <p
+                            class="text-brand-light text-xs translate-y-4 group-hover:translate-y-0 transition-transform delay-75">
+                            Atendimento Domiciliar</p>
+                    </div>
                 </div>
 
                 <!-- Item 5 -->
@@ -552,6 +579,15 @@
                     <img src="images/gallery/img5.webp" alt="Foto da Galeria CuidaPet" width="300" height="200"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <p
+                            class="text-white font-bold text-lg translate-y-4 group-hover:translate-y-0 transition-transform">
+                            Paciente CuidaPet</p>
+                        <p
+                            class="text-brand-light text-xs translate-y-4 group-hover:translate-y-0 transition-transform delay-75">
+                            Atendimento Domiciliar</p>
+                    </div>
                 </div>
 
                 <!-- Item 6: Wide -->
@@ -1162,6 +1198,47 @@
 
     </script>
 
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal-overlay">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-img');
+            const closeBtn = document.querySelector('.modal-close');
+            const galleryItems = document.querySelectorAll('#galeria .group');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    if (img) {
+                        modal.classList.add('active');
+                        modalImg.src = img.src;
+                        document.body.style.overflow = 'hidden'; // Prevent scrolling
+                    }
+                });
+            });
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
