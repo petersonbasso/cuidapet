@@ -988,15 +988,7 @@ video {
     background-color: rgb(238 242 255 / var(--tw-bg-opacity, 1))
 }
 
-.bg-purple-100 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(243 232 255 / var(--tw-bg-opacity, 1))
-}
-
-.bg-purple-50 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(250 245 255 / var(--tw-bg-opacity, 1))
-}
+/* bg classes removed */
 
 .bg-red-50 {
     --tw-bg-opacity: 1;
@@ -1036,11 +1028,7 @@ video {
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
 }
 
-.from-purple-500 {
-    --tw-gradient-from: #a855f7 var(--tw-gradient-from-position);
-    --tw-gradient-to: rgb(168 85 247 / 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
-}
+/* from classes removed */
 
 .via-transparent {
     --tw-gradient-to: rgb(0 0 0 / 0) var(--tw-gradient-to-position);
@@ -1337,15 +1325,7 @@ video {
     color: rgb(99 102 241 / var(--tw-text-opacity, 1))
 }
 
-.text-purple-500 {
-    --tw-text-opacity: 1;
-    color: rgb(168 85 247 / var(--tw-text-opacity, 1))
-}
-
-.text-purple-600 {
-    --tw-text-opacity: 1;
-    color: rgb(147 51 234 / var(--tw-text-opacity, 1))
-}
+/* text classes removed */
 
 .text-red-500 {
     --tw-text-opacity: 1;
@@ -1563,11 +1543,7 @@ video {
     background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
 }
 
-.hover\:from-purple-600:hover {
-    --tw-gradient-from: #9333ea var(--tw-gradient-from-position);
-    --tw-gradient-to: rgb(147 51 234 / 0) var(--tw-gradient-to-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
-}
+/* hover classes removed */
 
 .hover\:to-pink-600:hover {
     --tw-gradient-to: #db2777 var(--tw-gradient-to-position)
@@ -1654,10 +1630,7 @@ video {
     background-color: rgb(99 102 241 / var(--tw-bg-opacity, 1))
 }
 
-.group:hover .group-hover\:bg-purple-500 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(168 85 247 / var(--tw-bg-opacity, 1))
-}
+/* group-hover classes removed */
 
 .group:hover .group-hover\:bg-red-500 {
     --tw-bg-opacity: 1;
