@@ -6,7 +6,7 @@ image: "/images/hero-vet.webp"
 description: "Dicas simples para garantir que o atendimento veterinário no conforto do seu lar seja o mais tranquilo e sem estresse possível."
 ---
 
-O [atendimento veterinário domiciliar](file:////#servicos) tem se tornado a opção favorita de muitos tutores em **Canoas, Porto Alegre, Esteio e região**, principalmente por proporcionar mais **conforto** e reduzir drasticamente o estresse de tirar o pet de seu ambiente seguro. 
+O [atendimento veterinário domiciliar](/#servicos) tem se tornado a opção favorita de muitos tutores em **Canoas, Porto Alegre, Esteio e região**, principalmente por proporcionar mais **conforto** e reduzir drasticamente o estresse de tirar o pet de seu ambiente seguro. 
 
 No entanto, para garantir que a consulta seja um sucesso absoluto e que o seu cão ou gato se sinta o mais relaxado possível, alguns pequenos cuidados na preparação do ambiente e do próprio animal podem fazer toda a diferença.
 
@@ -31,7 +31,7 @@ Cerca de 30 minutos antes da chegada da veterinária, tente manter a casa calma:
 ## 3. Separe a carteira de vacinação e exames antigos
 
 Deixe fácil o histórico de saúde do seu pet. Isso inclui:
-*   A [carteira de vacinação](file:////vacinas.html) atualizada.
+*   A [carteira de vacinação](/vacinas.html) atualizada.
 *   Receitas de medicamentos que ele utilize de forma contínua.
 *   Exames de sangue ou imagem recentes (caso existam).
 
