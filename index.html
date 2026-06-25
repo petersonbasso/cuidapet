@@ -7,8 +7,26 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
+      // Inicializa Consent Mode do Google com base no localStorage
+      var hasAccepted = localStorage.getItem('cuidapet_cookies_accepted');
+      if (hasAccepted === 'true') {
+        gtag('consent', 'default', {
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted',
+          'analytics_storage': 'granted'
+        });
+      } else {
+        gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied'
+        });
+      }
+
+      gtag('js', new Date());
       gtag('config', 'G-8RZ68FZBHE');
       gtag('config', 'AW-977475421');
 
@@ -1277,6 +1295,85 @@
                     closeModal();
                 }
             });
+        });
+    </script>
+
+    <!-- Cookie Banner Popup -->
+    <div id="cookie-banner" class="fixed bottom-6 left-6 right-6 md:right-auto md:max-w-md z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-500 ease-out">
+        <div class="bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-2xl border border-gray-100 flex flex-col gap-4">
+            <div class="flex items-start gap-3">
+                <div class="bg-brand/10 p-2.5 rounded-full text-brand shrink-0">
+                    <i class="fa-solid fa-cookie-bite text-xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-gray-900 text-sm mb-1">Valorizamos sua privacidade</h4>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        Utilizamos cookies essenciais e de análise para oferecer a melhor experiência em nosso site. Ao navegar, você concorda com nossa <a href="/privacidade.html" class="text-brand hover:underline font-semibold">Política de Privacidade</a>.
+                    </p>
+                </div>
+            </div>
+            <div class="flex justify-end items-center gap-3">
+                <button id="decline-cookies" class="text-gray-500 hover:text-gray-800 text-xs font-bold px-4 py-2 transition-colors cursor-pointer">
+                    Recusar
+                </button>
+                <button id="accept-cookies" class="bg-brand hover:bg-brand-dark text-white text-xs px-6 py-2.5 rounded-full font-bold shadow-lg hover:shadow-brand/30 transition-all cursor-pointer">
+                    Aceitar Cookies
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            const declineBtn = document.getElementById('decline-cookies');
+
+            if (banner && acceptBtn && declineBtn) {
+                // Se o usuário ainda não decidiu, exibe o banner
+                if (localStorage.getItem('cuidapet_cookies_accepted') === null) {
+                    setTimeout(() => {
+                        banner.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+                        banner.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+                    }, 1000);
+                }
+
+                // Ação para Aceitar Cookies
+                acceptBtn.addEventListener('click', function() {
+                    localStorage.setItem('cuidapet_cookies_accepted', 'true');
+                    
+                    // Atualiza Consent Mode dinamicamente no Google
+                    if (typeof gtag !== 'undefined') {
+                        gtag('consent', 'update', {
+                            'ad_storage': 'granted',
+                            'ad_user_data': 'granted',
+                            'ad_personalization': 'granted',
+                            'analytics_storage': 'granted'
+                        });
+                    }
+
+                    banner.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+                    banner.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                });
+
+                // Ação para Recusar Cookies
+                declineBtn.addEventListener('click', function() {
+                    localStorage.setItem('cuidapet_cookies_accepted', 'false');
+
+                    // Atualiza Consent Mode negando os cookies
+                    if (typeof gtag !== 'undefined') {
+                        gtag('consent', 'update', {
+                            'ad_storage': 'denied',
+                            'ad_user_data': 'denied',
+                            'ad_personalization': 'denied',
+                            'analytics_storage': 'denied'
+                        });
+                    }
+
+                    banner.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+                    banner.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                });
+            }
         });
     </script>
 </body>
