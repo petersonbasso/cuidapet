@@ -1,0 +1,42 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.128.0'
+          extended: true
+
+      - name: Build Hugo Blog
+        run: |
+          cd blog-source
+          hugo --minify
+
+      - name: Clean Source Files Before Publish
+        run: |
+          # Remove a pasta de desenvolvimento para que ela não seja exposta na branch de deploy
+          rm -rf blog-source
+          # Remove arquivos de agentes se existirem no ambiente de build
+          rm -rf .agents
+          rm -rf .agent
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages

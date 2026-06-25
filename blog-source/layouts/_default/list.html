@@ -1,0 +1,60 @@
+{{ define "main" }}
+<main class="pt-32 pb-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Cabeçalho do Blog -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="inline-block py-1 px-3 rounded-full bg-brand-light text-brand-dark font-bold text-xs mb-4 tracking-wide uppercase">
+                <i class="fa-solid fa-feather mr-2"></i> Nosso Blog
+            </span>
+            <h1 class="font-heading text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                Dicas e Cuidados <br>
+                <span class="text-brand relative inline-block">
+                    para o seu melhor amigo
+                    <svg class="absolute w-full h-3 bottom-1 left-0 text-yellow-300 opacity-50 -z-10"
+                        viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" />
+                    </svg>
+                </span>
+            </h1>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Fique por dentro das melhores práticas, novidades sobre saúde animal e dicas de cuidados domiciliares diretamente de quem ama o que faz.
+            </p>
+        </div>
+
+        <!-- Grid de Posts -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {{ range where .Site.RegularPages "Section" "posts" }}
+            <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
+                {{ if .Params.image }}
+                <div class="relative h-48 w-full overflow-hidden">
+                    <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                </div>
+                {{ else }}
+                <div class="relative h-48 w-full bg-brand-light flex items-center justify-center">
+                    <i class="fa-solid fa-paw text-brand text-5xl"></i>
+                </div>
+                {{ end }}
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center gap-2 text-xs text-gray-400 font-semibold mb-3">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span>{{ .Date.Format "02/01/2006" }}</span>
+                    </div>
+                    <h2 class="font-heading font-bold text-xl text-gray-900 mb-3 line-clamp-2 hover:text-brand transition-colors">
+                        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    </h2>
+                    <p class="text-sm text-gray-600 mb-6 line-clamp-3 leading-relaxed flex-grow">
+                        {{ .Summary }}
+                    </p>
+                    <div class="mt-auto">
+                        <a href="{{ .RelPermalink }}" class="inline-flex items-center gap-2 text-brand hover:text-brand-dark font-bold text-sm transition-colors group">
+                            Ler artigo completo 
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+</main>
+{{ end }}

@@ -1,0 +1,122 @@
+{{ define "main" }}
+<main class="pt-32 pb-20 bg-gray-50">
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Botão Voltar -->
+        <div class="mb-8">
+            <a href="/blog/" class="inline-flex items-center gap-2 text-brand hover:text-brand-dark font-bold text-sm transition-colors group">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                Voltar para o blog
+            </a>
+        </div>
+
+        <!-- Meta e Título -->
+        <header class="mb-8">
+            <div class="flex items-center gap-4 text-xs text-gray-400 font-semibold mb-3">
+                <span class="flex items-center gap-1">
+                    <i class="fa-regular fa-calendar"></i>
+                    {{ .Date.Format "02/01/2006" }}
+                </span>
+                <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                <span class="flex items-center gap-1">
+                    <i class="fa-regular fa-user"></i>
+                    Dra. Priscila
+                </span>
+            </div>
+            <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                {{ .Title }}
+            </h1>
+        </header>
+
+        <!-- Imagem de Destaque -->
+        {{ if .Params.image }}
+        <div class="relative w-full h-[250px] sm:h-[400px] rounded-2xl overflow-hidden shadow-sm mb-10">
+            <img src="{{ .Params.image | absURL }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+        </div>
+        {{ end }}
+
+        <!-- Conteúdo do Artigo -->
+        <div class="blog-content bg-white rounded-2xl p-6 sm:p-10 border border-gray-100 shadow-sm">
+            {{ .Content }}
+        </div>
+
+        <!-- Rodapé do Artigo - Call to Action -->
+        <div class="mt-12 bg-brand-light rounded-2xl p-6 sm:p-8 text-center border border-brand/10">
+            <h3 class="font-heading font-bold text-xl text-brand-dark mb-2">Ficou com alguma dúvida sobre a saúde do seu pet?</h3>
+            <p class="text-sm text-gray-600 mb-6 max-w-lg mx-auto">
+                A Dra. Priscila atende a domicílio em Canoas e região, proporcionando cuidados sem estresse no conforto do seu lar.
+            </p>
+            <a href="https://wa.me/555196008543" target="_blank"
+                class="inline-flex items-center gap-2 bg-brand hover:bg-brand-dark text-white px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-brand/35 transition-all transform hover:-translate-y-0.5">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Falar com a Veterinária
+            </a>
+        </div>
+    </article>
+</main>
+
+<!-- Estilização Premium para o Conteúdo de Artigo Markdown -->
+<style>
+    .blog-content p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        font-size: 1.1rem;
+        color: #4b5563; /* text-gray-600 */
+    }
+    .blog-content p:last-child {
+        margin-bottom: 0;
+    }
+    .blog-content h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #111827; /* text-gray-900 */
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #38B2AC; /* brand border */
+        padding-left: 0.75rem;
+    }
+    .blog-content h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #1f2937; /* text-gray-800 */
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+    }
+    .blog-content ul, .blog-content ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .blog-content ul {
+        list-style-type: disc;
+    }
+    .blog-content ol {
+        list-style-type: decimal;
+    }
+    .blog-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.7;
+        font-size: 1.1rem;
+        color: #4b5563;
+    }
+    .blog-content strong {
+        color: #111827;
+        font-weight: 700;
+    }
+    .blog-content blockquote {
+        border-left: 4px solid #e5e7eb;
+        padding-left: 1rem;
+        font-style: italic;
+        color: #6b7280;
+        margin: 1.5rem 0;
+    }
+    .blog-content a {
+        color: #38B2AC;
+        text-decoration: underline;
+        font-weight: 600;
+        transition: color 0.2s;
+    }
+    .blog-content a:hover {
+        color: #2d8a85;
+    }
+</style>
+{{ end }}

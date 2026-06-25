@@ -26,3 +26,7 @@ dist-ssr
 # Agent directory
 .agent
 .agents
+
+# Hugo Build and Resources
+/blog
+/blog-source/resources/

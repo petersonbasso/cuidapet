@@ -1,0 +1,5 @@
+baseURL = 'https://cuidapet.vet.br/blog/'
+languageCode = 'pt-br'
+title = 'Blog | CuidaPet'
+publishDir = '../blog'
+theme = []
