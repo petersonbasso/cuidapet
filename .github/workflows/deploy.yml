@@ -34,6 +34,8 @@ jobs:
           # Remove arquivos de agentes se existirem no ambiente de build
           rm -rf .agents
           rm -rf .agent
+          # Remove o .gitignore temporário para que a action não ignore a pasta /blog no deploy
+          rm -f .gitignore
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
