@@ -3,7 +3,6 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RZ68FZBHE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -26,9 +25,17 @@
         });
       }
 
-      gtag('js', new Date());
-      gtag('config', 'G-8RZ68FZBHE');
-      gtag('config', 'AW-977475421');
+      // Adia o carregamento do script do Gtag para evitar reflows forçados e bloqueio no FCP
+      window.addEventListener('load', function() {
+        var script = document.createElement('script');
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-8RZ68FZBHE";
+        script.async = true;
+        document.head.appendChild(script);
+
+        gtag('js', new Date());
+        gtag('config', 'G-8RZ68FZBHE');
+        gtag('config', 'AW-977475421');
+      });
 
       // Rastreamento automático de cliques no WhatsApp (Google Ads Conversion)
       document.addEventListener('DOMContentLoaded', function() {
