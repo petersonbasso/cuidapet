@@ -147,7 +147,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <!-- Google Fonts (Optimized) -->
     <link
@@ -160,10 +159,10 @@
     </noscript>
 
     <!-- FontAwesome Icons (Deferred) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    <link rel="stylesheet" href="/css/all.min.css"
         media="print" onload="this.media='all'">
     <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="/css/all.min.css">
     </noscript>
 </head>
 
@@ -271,13 +270,13 @@
                     <div class="mt-8 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500">
                         <div class="flex -space-x-3">
                             <img class="w-10 h-10 rounded-full border-2 border-white object-cover"
-                                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=100"
+                                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=60&w=80"
                                 alt="Proprietário satisfeito com o atendimento pet">
                             <img class="w-10 h-10 rounded-full border-2 border-white object-cover"
-                                src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&q=80&w=100"
+                                src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&q=60&w=80"
                                 alt="Cachorro sendo bem cuidado em casa">
                             <img class="w-10 h-10 rounded-full border-2 border-white object-cover"
-                                src="https://images.unsplash.com/photo-1619360142636-23194a2119c4?auto=format&fit=crop&q=80&w=100"
+                                src="https://images.unsplash.com/photo-1619360142636-23194a2119c4?auto=format&fit=crop&q=60&w=80"
                                 alt="Pet feliz após consulta veterinária">
                         </div>
                         <p><span class="font-bold text-gray-800">+500</span> pets atendidos em domicílio</p>
@@ -292,9 +291,12 @@
                     </div>
 
                     <div class="relative">
-                        <img src="images/hero-vet.webp" alt="Dra. Priscila realizando atendimento veterinário domiciliar em um cachorro" width="713" height="733"
-                            fetchpriority="high"
-                            class="rounded-3xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] transform hover:scale-[1.02] transition-transform duration-500">
+                        <picture>
+                            <source srcset="images/hero-vet-mobile.webp" media="(max-width: 640px)">
+                            <img src="images/hero-vet.webp" alt="Dra. Priscila realizando atendimento veterinário domiciliar em um cachorro" width="713" height="733"
+                                fetchpriority="high"
+                                class="rounded-3xl shadow-2xl w-full object-cover h-[500px] lg:h-[600px] transform hover:scale-[1.02] transition-transform duration-500">
+                        </picture>
 
                         <!-- Floating Badge -->
                         <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 animate-bounce"
@@ -1207,9 +1209,15 @@
                 return window.innerWidth >= 768 ? 3 : 1;
             }
 
+            let carouselAnimationFrame;
             function updateCarousel() {
-                const width = track.clientWidth / getItemsPerView();
-                track.style.transform = `translateX(-${currentIndex * width}px)`;
+                if (carouselAnimationFrame) {
+                    cancelAnimationFrame(carouselAnimationFrame);
+                }
+                carouselAnimationFrame = requestAnimationFrame(() => {
+                    const width = track.clientWidth / getItemsPerView();
+                    track.style.transform = `translateX(-${currentIndex * width}px)`;
+                });
             }
 
             nextBtn.addEventListener('click', () => {
