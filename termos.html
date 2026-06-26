@@ -3,14 +3,21 @@
 
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RZ68FZBHE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-8RZ68FZBHE');
-      gtag('config', 'AW-977475421');
+      // Adia o carregamento do script do Gtag para evitar reflows forçados e bloqueio no FCP
+      window.addEventListener('load', function() {
+        var script = document.createElement('script');
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-8RZ68FZBHE";
+        script.async = true;
+        document.head.appendChild(script);
+
+        gtag('js', new Date());
+        gtag('config', 'G-8RZ68FZBHE');
+        gtag('config', 'AW-977475421');
+      });
 
       // Rastreamento automático de cliques no WhatsApp (Google Ads Conversion)
       document.addEventListener('DOMContentLoaded', function() {
@@ -153,7 +160,7 @@
             <section class="mb-8 border-t pt-6">
                 <h2 class="font-heading text-lg font-bold text-gray-900 mb-2">Contato</h2>
                 <p class="leading-relaxed">
-                    Se você tiver alguma dúvida sobre estes termos, entre em contato através do e-mail: <strong class="text-gray-800">contato@cuidapet.vet.br</strong>.
+                    Se você tiver alguma dúvida sobre estes termos, entre em contato através do e-mail: <strong class="text-gray-800">contato&#64;cuidapet.vet.br</strong>.
                 </p>
             </section>
         </div>
@@ -170,7 +177,7 @@
 
             <div class="flex flex-wrap items-center justify-center gap-4 text-sm mb-6">
                 <span class="text-gray-500"><i class="fa-solid fa-phone text-brand mr-1"></i> (51) 99600-8543</span>
-                <span class="text-gray-500"><i class="fa-solid fa-envelope text-brand mr-1"></i> contato@cuidapet.vet.br</span>
+                <span class="text-gray-500"><i class="fa-solid fa-envelope text-brand mr-1"></i> contato&#64;cuidapet.vet.br</span>
                 <a href="index.html" class="text-gray-500 hover:text-brand transition-colors font-semibold">Voltar ao site principal</a>
                 <a href="termos.html" class="text-gray-500 hover:text-brand transition-colors font-semibold">Termos de Uso</a>
                 <a href="privacidade.html" class="text-gray-500 hover:text-brand transition-colors font-semibold">Política de Privacidade</a>
